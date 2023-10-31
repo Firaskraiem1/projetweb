@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notre Menu</title>
+</head>
+<body>
+{% if liste is empty %}
+
+Menu vide
+
+{% else %}
+<H1>Notre Menu</H1>
+    <table border="1">
+        <tr>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Dispo</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    {% for plat  in liste %}
+    {% if plat.dispo==true %}
+        <tr>
+            <td>{{ plat.nom|upper}}</td>
+            <td>{{plat.prix}}</td>
+            <td>{{ plat.dispo}}</td>
+            <td>{{ plat.type}}</td>
+            <td><a href="{{path('editMenu',{'id':plat.id})}}">Update</a>
+                <a href="{{path('delete',{'id':plat.id})}}">Delete</a>
+                <a href="{{ path('show', { id: plat.id }) }}">show</a>
+            </td>
+        </tr>
+    {% endif %}
+    {% endfor %}
+    </table>
+{% endif %}
+</br>
+<button><a href="{{path('ajoutPlat')}}" class="btn btn-primary">Ajout plat</a></button>
+</body>
+</html>
+

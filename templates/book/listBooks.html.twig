@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Books</title>
+</head>
+<body>
+{% set nbPub=0 %}
+{% set nbNpub=0 %}
+{% if liste is empty %}
+
+No Books found
+
+{% else %}
+<H1>List Books</H1>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Publication date</th>
+            <th>Published</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Actions</th>
+        </tr>
+    {% for book  in liste %}
+    {% if book.published==1 %}
+        <tr>
+            <td>{{ book.title|upper}}</td>
+            <td>{{book.publicationDate|date("Y-m-d")}}</td>
+            <td>{{ book.published}}</td>
+            <td>{{ book.category}}</td>
+            <td>{{ book.rel.username}}</td>
+            <td><a href="{{path('editBook',{'id':book.id})}}">edit</a>
+                <a href="{{path('deleteBook',{'id':book.id})}}">delete</a>
+                <a href="{{ path('show', { id: book.id }) }}">show</a>
+            </td>
+        </tr>
+    {% set nbPub=nbPub+1 %}
+    {% else %}
+        {% set nbNpub=nbNpub+1 %}
+    {% endif %}
+    {% endfor %}
+    </table>
+{% endif %}
+    <p>Number of published books:{{nbPub}} </p>
+    <p>Number of unpublished books:{{nbNpub}} </p>
+</br>
+<button><a href="{{path('addBook')}}" class="btn btn-primary">Create new</a></button>
+</body>
+</html>
+

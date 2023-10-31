@@ -1,0 +1,15 @@
+# index:
+#     path: /home
+#     controller: App\Controller\HomeController::index
+# service:
+#     path: /service/{name}
+#     controller: App\Controller\ServiceController::showService
+# goToIndex:
+#     path: /goToIndex
+#     controller: App\Controller\HomeController::index
+# showAuthor:
+#     path: /showAuthor/{name}
+#     controller: App\Controller\AuthorController::showAuthor
+# list:
+#     path: /list
+#     controller: App\Controller\AuthorController::list

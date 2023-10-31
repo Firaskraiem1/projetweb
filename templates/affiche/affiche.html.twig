@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List authors</title>
+</head>
+<body>
+{% if liste is empty %}
+
+il n'y a plus des auteurs
+
+{% else %}
+<H1>List authors</H1>
+    <table border="1">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Acitons</th>
+        </tr>
+    {% for author in liste %}
+        <tr>
+            <td>{{ author.username|upper}}</td>
+            <td>{{ author.email }}</td>
+            <td><a href="{{path('name_edit',{'id':author.id})}}">edit</a>
+                <a href="{{path('name_delete',{'id':author.id})}}">delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des auteurs</title>
+</head>
+<body>
+{% set nb=0 %}
+{% if authors is empty %}
+
+il n'y a plus des auteurs
+
+{% else %}
+<H1>Liste des auteurs</H1>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Nb books</th>
+            <th>Lien</th>
+        </tr>
+    {% for author in authors %}
+        <tr>
+            <td>{{ author.id }}</td>
+            <td>{{ author.username|upper }}</td>
+            <td>{{ author.email }}</td>
+            <td>{{ author.nb_books }}</td>
+            <td><a href="{{ url('showBooks',{'name':author.username}) }}">show Books</a></td>
+        </tr>
+    {% set nb=nb+author.nb_books %}
+    {% endfor %}
+    </table>
+{% endif %}
+    <p>Le nombre des auteurs est {{authors|length}}</p>
+    <p>Le nombre total des livres de tous les auteurs est {{nb}}</p>
+</body>
+</html>
